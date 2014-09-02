@@ -23,15 +23,11 @@ public class ContactListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		try {
 			request.setAttribute("contacts", contactRepository.findAll());
 			RequestDispatcher view = request
 					.getRequestDispatcher("/jsp/contact.jsp");
 			view.forward(request, response);
-		} catch (SQLException e) {
-			throw new ServletException(e);
-		}
-
+		
 	}
 
 }

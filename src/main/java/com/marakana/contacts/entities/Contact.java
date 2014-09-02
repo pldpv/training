@@ -6,10 +6,16 @@
 
 package com.marakana.contacts.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  *
  * @author ֵגדום
  */
+@Entity
 public class Contact {
     
     public Contact(){}
@@ -17,8 +23,15 @@ public class Contact {
         this.name = name;
         this.addressId = addressId;
     }
+    
+    @Id
+    @GeneratedValue
     private Long id;
+    
+    @Column
     private String name;
+    
+    @Column
     private Long addressId;
 
     public Long getId() {

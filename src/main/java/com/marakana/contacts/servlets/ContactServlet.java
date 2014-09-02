@@ -25,7 +25,7 @@ public class ContactServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		try {
+	
 			if (request.getParameter("add") != null) {
 				request.getRequestDispatcher("/jsp/addContact.jsp").forward(
 						request, response);
@@ -43,14 +43,9 @@ public class ContactServlet extends HttpServlet {
 							.forward(request, response);
 				}
 			}
-		} catch (SQLException e) {
-			throw new ServletException(e);
-		}
-
 	}
 
-	private void populateModelFromContactId(HttpServletRequest request)
-			throws SQLException {
+	private void populateModelFromContactId(HttpServletRequest request) {
 		long id = Long.parseLong(request.getParameter("id"));
 		Contact contact = contactRepositor.find(id);
 		Address address = addressRepository.find(contact.getAddressId());
@@ -62,8 +57,7 @@ public class ContactServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		try {
-			if (request.getParameter("add") != null) {
+		if (request.getParameter("add") != null) {
 				
 				// create new contact and address from form parameters, and persist
 				Address address = new Address(request.getParameter("street"),
@@ -71,10 +65,10 @@ public class ContactServlet extends HttpServlet {
 						request.getParameter("state"),
 						request.getParameter("zip"));
 
-				addressRepository.create(address);
+				addressRepository.save(address);
 				Contact contact = new Contact(request.getParameter("name"),
 						address.getId());
-				contactRepositor.create(contact);
+				contactRepositor.save(contact);
 				
 				// redirect to contact view page
 				response.sendRedirect("contact?id=" + contact.getId());
@@ -90,8 +84,8 @@ public class ContactServlet extends HttpServlet {
 				address.setCity(request.getParameter("city"));
 				address.setState(request.getParameter("state"));
 				address.setZip(request.getParameter("zip"));
-				addressRepository.update(address);
-				contactRepositor.update(contact);
+				addressRepository.save(address);
+				contactRepositor.save(contact);
 				
 				// redirect to contact view page
 				response.sendRedirect("contact?id=" + contact.getId());
@@ -106,9 +100,5 @@ public class ContactServlet extends HttpServlet {
 			}else {
 				super.doPost(request, response);
 			}
-		} catch (SQLException e) {
-			throw new ServletException(e);
 		}
-
-	}
 }
