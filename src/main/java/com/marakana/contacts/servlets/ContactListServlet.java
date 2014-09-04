@@ -26,8 +26,6 @@ public class ContactListServlet extends HttpServlet {
 			request.setAttribute("contacts", contactRepository.findAll());
 			RequestDispatcher view = request
 					.getRequestDispatcher("/jsp/contact.jsp");
-			view.forward(request, response);
-		
+			view.forward(request, response);	
 	}
-
 }

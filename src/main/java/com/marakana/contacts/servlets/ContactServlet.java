@@ -19,7 +19,6 @@ import com.marakana.contacts.repositories.ContactsRepository;
 public class ContactServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private final AddressRepository addressRepository = new AddressRepository();
 	private final ContactsRepository contactRepositor = new ContactsRepository();
 
 	@Override
@@ -34,10 +33,7 @@ public class ContactServlet extends HttpServlet {
 				// contact and address
 				long id = Long.parseLong(request.getParameter("id"));
 				Contact contact = contactRepositor.find(id);
-				Address address = contact.getAddress();
 				request.setAttribute("contact", contact);
-				request.setAttribute("address", address);
-				
 				// dispatch either to the edit page or to the contact view
 				if (request.getParameter("edit") != null) {
 					request.getRequestDispatcher("jsp/editContact.jsp")
@@ -60,8 +56,6 @@ public class ContactServlet extends HttpServlet {
 						request.getParameter("city"),
 						request.getParameter("state"),
 						request.getParameter("zip"));
-
-				address=addressRepository.save(address);
 				Contact contact = new Contact(request.getParameter("name"),
 						address);
 				contact= contactRepositor.save(contact);
@@ -71,7 +65,7 @@ public class ContactServlet extends HttpServlet {
 			
 			} else if (request.getParameter("edit") != null) {
 				
-				// looks up for exist contact and address, update and  persist
+				// looks up for exist contact , update and  persist
 				long id = Long.parseLong(request.getParameter("id"));
 				Contact contact = contactRepositor.find(id);
 				Address address = contact.getAddress();
@@ -80,7 +74,6 @@ public class ContactServlet extends HttpServlet {
 				address.setCity(request.getParameter("city"));
 				address.setState(request.getParameter("state"));
 				address.setZip(request.getParameter("zip"));
-				addressRepository.save(address);
 				contactRepositor.save(contact);
 				
 				// redirect to contact view page
@@ -89,9 +82,7 @@ public class ContactServlet extends HttpServlet {
 			}else if(request.getParameter("delete") != null){
 				long id = Long.parseLong(request.getParameter("id"));
 				Contact contact = contactRepositor.find(id);
-				Address address = contact.getAddress();
 				contactRepositor.delete(contact);
-				addressRepository.delete(address);
 				response.sendRedirect("contacts");
 			}else {
 				super.doPost(request, response);
