@@ -7,8 +7,8 @@ package com.marakana.contacts.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.marakana.contacts.entities.Contact;
+import com.marakana.contacts.entities.Person;
 
-public interface ContactsRepository extends JpaRepository<Contact,Long> {
+public interface PersonRepository extends JpaRepository<Person,Long> {
 	
 }

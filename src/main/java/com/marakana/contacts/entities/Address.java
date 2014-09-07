@@ -16,7 +16,7 @@ import javax.persistence.Id;
  * @author ֵגדום
  */
 @Entity
-public class Address {
+public class Address  extends BaseEntity{
 
     public Address(String street, String city, String state, String zip) {
         this.street = street;
@@ -25,11 +25,7 @@ public class Address {
         this.zip = zip;
     }
     public Address(){}
-    
-    @Id
-    @GeneratedValue
-    private Long id;
-    
+       
     @Column
     private String street;
 
@@ -41,14 +37,6 @@ public class Address {
 
     @Column
     private String zip;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getStreet() {
         return street;
