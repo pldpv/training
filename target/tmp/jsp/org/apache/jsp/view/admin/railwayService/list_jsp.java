@@ -56,17 +56,28 @@ public final class list_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<html>\r\n");
       out.write("<head>\r\n");
       out.write("<title>Служби Залізниці</title>\r\n");
+      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "../../include/common_css.jsp", out, false);
+      out.write("\r\n");
       out.write("</head>\r\n");
       out.write("<body>\r\n");
       out.write("\t<h1>Служби Залізниці</h1>\r\n");
       out.write("\t<ul>\r\n");
-      out.write("\t");
+      out.write("\t\t");
       if (_jspx_meth_c_forEach_0(_jspx_page_context))
         return;
       out.write("\r\n");
       out.write("\t</ul>\r\n");
-      out.write("\t\t<a href=\"railwayservice?add\">Створити службу</a> | <a href=\"admin\">На головну</a>\r\n");
+      out.write("\t<a href=\"railwayservice?add\">Створити службу</a> |\r\n");
+      out.write("\t<a href=\"/\">На головну</a>\r\n");
+      out.write("\t<div id='somediv'></div>\r\n");
       out.write("</body>\r\n");
+      out.write("<script>\r\n");
+      out.write(" $(\".edit-action\").click(\r\n");
+      out.write("\t\t\tfunction(event) {\r\n");
+      out.write("\t\t\t\tevent.preventDefault();\r\n");
+      out.write("\t\t\t\t$(\"#somediv\").load($(this).data(\"url\")).dialog({modal:true}); \r\n");
+      out.write("\t\t\t});\r\n");
+      out.write("</script>\r\n");
       out.write("</html>");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
@@ -97,13 +108,25 @@ public final class list_jsp extends org.apache.jasper.runtime.HttpJspBase
       if (_jspx_eval_c_forEach_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
           out.write("\r\n");
-          out.write("\t\t<li><a href=\"");
+          out.write("\t\t\t<li>\r\n");
+          out.write("\t\t\t<a href=\"");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${railwayService.url}", java.lang.String.class, (PageContext)_jspx_page_context, null));
           out.write('"');
           out.write('>');
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${railwayService.name}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("</a> </li>\r\n");
-          out.write("    ");
+          out.write("</a> \r\n");
+          out.write("\t\t\t<a href=\"#\" data-url=\"railwayservice?edit&id=");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${railwayService.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\" class=\"edit-action\">Редагувати</a> \r\n");
+          out.write("\t\t\t<form action=\"railwayservice\" method=\"post\">\r\n");
+          out.write("\t\t\t\t<input type=\"hidden\" name=\"delete\"> \r\n");
+          out.write("\t\t\t\t<input type=\"hidden\" name=\"id\" value=\"");
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${railwayService.id}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+          out.write("\"> \r\n");
+          out.write("\t\t\t\t<input type=\"submit\" value=\"Видалити\">\r\n");
+          out.write("\t\t\t</form>\r\n");
+          out.write("\t\t\t</li>\r\n");
+          out.write("\t\t");
           int evalDoAfterBody = _jspx_th_c_forEach_0.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
             break;

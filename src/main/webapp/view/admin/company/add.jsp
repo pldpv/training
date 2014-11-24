@@ -6,13 +6,12 @@
 </head>
 <body>
 	<h1>Нове підриєство</h1>
-		<form action="company" method="post">
-		  <input type="hidden"name="${_csrf.parameterName}" value="${_csrf.token}">
+	<form action="company" method="post">
 	<input type="hidden" name="add">
 	<input type="hidden" name="railwayService_id" value="${railwayService.id}">
 	<ul>
-		<li>Назва: <input type="text" name="name"></li>
-		<li>Начальник: <input type="text" name="director"></li>
+		<li>Назва: <input type="text" name="name" autocomplete="off"></li>
+		<li>Начальник: <input type="text" name="director" autocomplete="off"></li>
 	</ul>
 	<input type="submit" value="add">
 	</form>

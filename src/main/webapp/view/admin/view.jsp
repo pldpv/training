@@ -4,14 +4,16 @@
 <html>
 <head>
 <title>Панель адміністратора</title>
+ <c:url var="bootstrapResponsiveUrl" value="/resources/css/bootstrap.css"/>
+    <link href="${bootstrapResponsiveUrl}" rel="stylesheet"></link>
 </head>
 <body>
 	<h1>Панель адміністратора</h1>
 	<ul>
-		<li><a href="railwayservice?list">Редагування підприємств</a></li>
-		<li><a href="contacts">Збірник організаційно-методичних
+		<li><a href="railwayservice?list"><span class="glyphicon glyphicon-home"></span> Редагування підприємств</a></li>
+		<li><a href="catalog">Збірник організаційно-методичних
 				докуметів з метрології</a></li>
-		<li><a href="contacts">Редагування користувачів</a></li>
+		<li><a href="users">Редагування користувачів</a></li>
 	</ul>
 </body>
 </html>

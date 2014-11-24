@@ -2,15 +2,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
-<title>Додати службу</title>
+<title>Створити службу</title>
 </head>
 <body>
-	<h1>Додати службу</h1>
+	<h1>Створити службу</h1>
 	<form action="railwayservice" method="post">
 	<input type="hidden" name="add">
 	<ul>
-		<li>Назва: <input type="text" name="name"></li>
-		<li>Начальник: <input type="text" name="director"></li>
+		<li>Назва: <input type="text" name="name" autocomplete="off"></li>
+		<li>Начальник служби: <input type="text" name="director" autocomplete="off"></li>
 	</ul>
 	<input type="submit" value="add">
 	</form>

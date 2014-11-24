@@ -11,8 +11,8 @@
 			<li><a href="${department.url}">${department.name}</a></li>
 		</c:forEach>
 	</ul>
-	<a href="${company.url}&edit">Редагувати службу</a> | 
-	<a href="department?add">Створити пыдприємство</a>
+	<a href="${company.url}&edit">Редагувати підприємство</a> | 
+	<a href="department?add&company_id=${company.id}">Створити відділ</a>
 	| <a href="${company.railwayService.url}">Назад до ${company.railwayService.name}</a>
 </body>
 </html>
